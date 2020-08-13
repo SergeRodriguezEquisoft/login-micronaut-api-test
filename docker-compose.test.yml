@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  login-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    command: ["sh","-c","./gradlew --no-daemon test --fail-fast --console plain --stacktrace"]
+  postgres:
+    image: "postgres:12.3"
+    environment:
+      POSTGRES_USER: login
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: login
+    ports:
+      - 5432:5432
